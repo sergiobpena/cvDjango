@@ -6,3 +6,6 @@ db.sqlite3
 /static
 .DS_Store
 comandos.md
+.vscode/settings.json
+/.vscode
+/CV_estaticos
