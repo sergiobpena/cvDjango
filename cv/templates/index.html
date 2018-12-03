@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block contido %}
+<ul>
+    <li><strong>Probame:</strong> {{ num_compInfor }}</li>
+
+</ul>
+<p> Visitaouse {{ num_visits }}{% if num_visits == 1 %} vez {% else %} veces {% endif %}. </p>
+{% endblock %}

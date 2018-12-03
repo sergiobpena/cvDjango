@@ -26,7 +26,7 @@ class CompProg(models.Model):
     linguaxe=models.CharField(max_length=50)
     nivel=models.ForeignKey(Niveis,on_delete=models.SET_NULL,blank=True,null=True)
     outra_info=models.TextField(blank=True, verbose_name='Informacion adicional')
-
+ 
     def __str__(self):
         return self.linguaxe
     class Meta:
@@ -89,6 +89,8 @@ class Sector(models.Model):
     def __str__(self):
         return self.sector
 
+from django.urls import reverse
+
 class ExperienciaProfesional(models.Model):
     posto=models.CharField(max_length=80)
     empresa=models.CharField(max_length=80)
@@ -105,6 +107,7 @@ class ExperienciaProfesional(models.Model):
         verbose_name='Experiencia Profesional'
 
     #def get_absolute_url(self):
+    #    return reverse ('experiencia_detalle', args=[str(self.id)])
     
         #Devuelve el URL a una instancia particular de Book
         #El último método, get_absoulte_url() devuelve un URL que puede ser usado para acceder al detalle 
@@ -131,3 +134,25 @@ class Curriculum(models.Model):
     compInfor=models.ManyToManyField(CompInfor,null=True,blank=True)
     compProg=models.ManyToManyField(CompProg,null=True,blank=True)
     OutroDato=models.ManyToManyField(OutroDato,null=True,blank=True)
+#Xestion de usuarios
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+#class Perfil(models.Model):
+#    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+#    bio = models.CharField(max_length=255, blank=True)
+#    web = models.URLField(blank=True)
+
+    # Python 3
+#    def __str__(self): 
+#        return self.usuario.username
+
+#@receiver(post_save, sender=User)
+#def crear_usuario_perfil(sender, instance, created, **kwargs):
+#    if created:
+#        Perfil.objects.create(usuario=instance)
+
+#@receiver(post_save, sender=User)
+#def guardar_usuario_perfil(sender, instance, **kwargs):
+#    instance.perfil.save()

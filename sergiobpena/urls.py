@@ -19,9 +19,14 @@ from django.urls import path
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+
 #Redirixe peticions o modulo cv
 from django.urls import include
-
+#inclue url autentificacion
+from django.conf.urls import url
+urlpatterns += [
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+]
 urlpatterns += [
     path('cv/', include('cv.urls')),
 ]

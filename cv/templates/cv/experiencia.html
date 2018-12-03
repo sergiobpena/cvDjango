@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block contido %}
+<section id='exp_prof'>
+    <h1 class="text-left">Experiencia profesional </h1>
+    {% if object_list %}
+    {% for posto in object_list %}
+    <article class="posto_trab">
+        <div>
+            <div class="row">
+                <h2>{{posto.posto}} </h2>
+            </div>
+            <div class="row">
+                <div class=".col-md-8">
+                    <h4> {{posto.dataInicio}} - {{posto.dataFin}} </h4>
+                </div>
+                <div>
+                    <h3> {{posto.empresa}} </h3>
+                </div>
+            </div>
+            <div>
+                <p>
+                    {{posto.funcions}}
+                </p>
+            </div>
+            <p>
+                <a href="{{ posto.get_absolute_url }}"></a> 
+            </p>
+        </div>
+    </article>
+    {% endfor %}
+    {% else %}
+        <p>Non hai experiencia profesional rexistrada</p>
+    {% endif %}
+</section>
+{% endblock %}
