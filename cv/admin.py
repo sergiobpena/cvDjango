@@ -5,6 +5,12 @@ from django.contrib import admin
 from .models import Niveis , CompInfor , CompProg , FormOficial , Curso , Direccion , DatosPersoais , Sector , ExperienciaProfesional , OutroDato , Curriculum 
 
 admin.site.register(Niveis)
+#@admin.register(Niveis)
+#class NiveisAdmin(admin.ModelAdmin):
+#    pass
+#admin.site.register(Niveis,NiveisAdmin)
+
+
 admin.site.register(CompInfor)
 admin.site.register(CompProg)
 admin.site.register(FormOficial)

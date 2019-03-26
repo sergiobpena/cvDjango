@@ -9,3 +9,5 @@ comandos.md
 .vscode/settings.json
 /.vscode
 /CV_estaticos
+/.idea
+/cuentas/migrations

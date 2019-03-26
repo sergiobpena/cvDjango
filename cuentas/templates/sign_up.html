@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static '../css/cuentas.css' %}">
+{% endblock %}
+
+{% block contido %}
+    <div class="container">
+        <h1 class="text-center logo my-4">
+{#            <a href="{% url 'home' %}">Django Boards</a>#}
+        </h1>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Rexistro</h3>
+                        <form method="post" novalidate>
+                            {% csrf_token %}
+                            {% include 'form_bootstrap/form.html' %}
+                            <button type="submit" class="btn btn-primary">Crea unha nova conta</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-muted text-center">
+                        Xa tes unha conta? <a href="{% url 'login' %}">Autentificate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

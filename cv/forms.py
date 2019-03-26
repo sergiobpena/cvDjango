@@ -1,8 +1,7 @@
 from django import forms
-from django.forms import Modelform
 from .models import ExperienciaProfesional
 
-class ExperienciaProfsForm(Modelform):
+class ExperienciaProfsForm(forms.ModelForm):
 
     #validacion de data de finalizacion
     def clean_dataFin(self):
@@ -21,18 +20,3 @@ class ExperienciaProfsForm(Modelform):
         model = ExperienciaProfesional
         fields = '__all__'
 
-from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
-
-def registrar(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            new_user = form.save()
-            return HttpResponseRedirect("/cv/")
-    else:
-        form = UserCreationForm()
-    return render(request, "biblioteca/registro.html", {
-        'form': form,
-    })

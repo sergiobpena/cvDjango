@@ -4,10 +4,8 @@
 
 <form action="" method="post">
     {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit" />
+    {% include 'form_bootstrap/form.html' %}
+    <button type="submit" class="btn btn-success">Engadir</button>
     
 </form>
 {% endblock %}

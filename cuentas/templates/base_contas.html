@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'css/cuentas.css' %}">
+{% endblock %}
+
+{% block corpo %}
+  <div class="container">
+    <h1 class="text-center logo my-4">
+      <a href="{% url 'index' %}">Paxina Principal</a>
+    </h1>
+    {% block contido %}
+    {% endblock %}
+  </div>
+{% endblock %}

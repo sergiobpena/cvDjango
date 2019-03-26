@@ -50,7 +50,7 @@ class ExperienciaProfesionalViewDetalles(generic.ListView):
     
 
 from django.views.generic.edit import CreateView
-#from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 #@login_required
@@ -59,4 +59,35 @@ class ExperienciaProfesionalCrearView(LoginRequiredMixin,CreateView):
     fields='__all__'
     template_name = 'cv/experiencia_form.html'
     success_url='./'
+""" class XestionCvCrearView(LoginRequiredMixin,CreateView):
+    model=Curriculum
+    fields='__all__'
+    template_name = ''
+    success_url='./' """
+
+""" from .forms import CreateUserForm
+class Create(CreateView):
+    success_url = reverse_lazy('login')
+    template_name = '/sign_up.html'
+    model = User
+    form_class = CreateUserForm
+
+def form_valid(self,form):
+    self.object = form.save(commit=False)
+    self.object.set_password(self.object.password)
+    self.object.save()
+    return HttpResponseRedirect(self.get_success_url()) """
+"""
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+
+from .forms import ContactoForm
+
+def mensaxeContacto(request):
+    if request.method=='POST':
+        formulario=ContactoForm(request.POST)
+
+"""
+
+
     
