@@ -3,10 +3,14 @@
 from django.shortcuts import render
 
 # Create your views here.
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render , redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login as auth_login
-from .forms import SignUpForm
+from django.contrib.auth.views import PasswordResetView
+from .forms import SignUpForm , LoginFormulario , ReseteoContrasinalFormulario
+
+from django.urls import reverse_lazy
 
 from django.views.generic import FormView, TemplateView, RedirectView
 
@@ -24,6 +28,15 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'sign_up.html', {'form': form})
 
+
 class LoginVista (FormView):
-    form_class = AuthenticationForm
-    template_name =
+    form_class = LoginFormulario
+    template_name ='login.html'
+    success_url = reverse_lazy("index")
+
+
+class ReseteaContrasinalVista(PasswordResetView):
+    form_class = ReseteoContrasinalFormulario
+
+
+
