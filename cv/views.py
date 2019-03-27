@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from .models import Niveis , CompInfor , CompProg , FormOficial , Curso , Direccion , DatosPersoais , Sector , ExperienciaProfesional , OutroDato , Curriculum 
+from .models import CompInfor , CompProg , FormOficial , Curso , Direccion , DatosPersoais , Sector , ExperienciaProfesional , OutroDato , Curriculum
 
 def index(request):
     """

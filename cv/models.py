@@ -1,24 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import User
-
-class Niveis(models.Model):
-    nivel = models.CharField(max_length=50, null=False, blank=False, verbose_name='Nivel')
-
-    def __str__(self):
-        return self.nivel
-
-    class Meta:
-        verbose_name = 'Niveis'
-
+from django.urls import reverse
 
 class CompInfor(models.Model):
     tipoCompe = models.CharField(max_length=50, verbose_name='Competencia')
     software = models.CharField(max_length=50, verbose_name='Software')
-    # Ollo comillas principiante
-    nivel = models.ForeignKey(Niveis, on_delete=models.SET_NULL, blank=True, null=True)
+    CLASIFICACION_NIEVEIS = (
+        ('p', 'Principiante'),
+        ('m', 'Intermedio'),
+        ('e', 'Experto')
+    )
+    nivel = models.CharField(max_length=1, choices=CLASIFICACION_NIEVEIS, blank=True, verbose_name='Nivel',default='p')
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comp_inform')
 
     def __str__(self):
         return self.software
+
+    def get_absolute_url(self):
+        return reverse('detalle-competencia',args=[str(self.id)])
 
     class Meta:
         verbose_name = 'Competencias informáticas'
@@ -26,8 +25,14 @@ class CompInfor(models.Model):
 
 class CompProg(models.Model):
     linguaxe = models.CharField(max_length=50)
-    nivel = models.ForeignKey(Niveis, on_delete=models.SET_NULL, blank=True, null=True)
+    CLASIFICACION_NIEVEIS = (
+        ('p', 'Principiante'),
+        ('m', 'Intermedio'),
+        ('e', 'Experto')
+    )
+    nivel = models.CharField(max_length=1, choices=CLASIFICACION_NIEVEIS, blank=True, verbose_name='Nivel',default='p')
     outra_info = models.TextField(blank=True, verbose_name='Informacion adicional')
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE,related_name='comp_programacion')
 
     def __str__(self):
         return self.linguaxe
@@ -43,6 +48,7 @@ class FormOficial(models.Model):
                                help_text="En blanco se estás estudando na actualidade")
     escola = models.CharField(max_length=80, verbose_name='Centro de estudo')
     informacionAdicional = models.TextField()
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE,related_name='form_oficial')
 
     class Meta:
         ordering = ["dataFin", "dataInicio"]
@@ -60,6 +66,7 @@ class Curso(models.Model):
                                help_text="En blanco se estás estudando na actualidade")
     duracion = models.CharField(max_length=6)
     compAdq = models.TextField(verbose_name='Competencias adquiridas')
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE,related_name='cursos')
 
     class Meta:
         ordering = ["dataFin", "dataInicio"]
@@ -76,6 +83,7 @@ class Direccion(models.Model):
     letraPis = models.CharField(max_length=1, verbose_name='Letra Piso')
     concello = models.CharField(max_length=40)
     provincia = models.CharField(max_length=40)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE,related_name='usuario')
 
     def __str__(self):
         # return self.rua + ' %i ' +  self.concello + ' ' + self.provincia %self.numPis
@@ -89,6 +97,7 @@ class DatosPersoais(models.Model):
     dataNac = models.DateField(verbose_name='Data de nacemento')
     correoe = models.EmailField(verbose_name='Correo eléctronico')
     telefono = models.IntegerField(verbose_name='Numero de telefono', blank=True, null=True)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE,related_name='datos_persoais')
 
     def __str__(self):
         return self.nome + ' ' + self.apel1 + ' ' + self.apel2
@@ -104,7 +113,7 @@ class Sector(models.Model):
         return self.sector
 
 
-from django.urls import reverse
+
 
 
 class ExperienciaProfesional(models.Model):
@@ -117,6 +126,7 @@ class ExperienciaProfesional(models.Model):
     dataFin = models.DateField(null=True, blank=True, verbose_name='Data Finalización',
                                help_text="En blanco se continúas na actualidade")
     sector = models.ForeignKey(Sector, on_delete=models.SET_NULL, null=True)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE,related_name='exp_profs')
 
     def __str__(self):
         return self.posto + ' ' + self.empresa
@@ -139,6 +149,7 @@ class ExperienciaProfesional(models.Model):
 class OutroDato(models.Model):
     texto1 = models.CharField(max_length=50, verbose_name='Dato de interés')
     texto2 = models.TextField(verbose_name='Información adicional')
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE,related_name='outros_datos')
 
     def __str__(self):
         return self.texto1
@@ -157,25 +168,5 @@ class Curriculum(models.Model):
     compInfor = models.ManyToManyField(CompInfor, null=True, blank=True)
     compProg = models.ManyToManyField(CompProg, null=True, blank=True)
     OutroDato = models.ManyToManyField(OutroDato, null=True, blank=True)
-# Xestion de usuarios
-# from django.contrib.auth.models import User
-# from django.db.models.signals import post_save
-# from django.dispatch import receiver
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE,related_name='cvs')
 
-# class Perfil(models.Model):
-#    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-#    bio = models.CharField(max_length=255, blank=True)
-#    web = models.URLField(blank=True)
-
-# Python 3
-#    def __str__(self): 
-#        return self.usuario.username
-
-# @receiver(post_save, sender=User)
-# def crear_usuario_perfil(sender, instance, created, **kwargs):
-#    if created:
-#        Perfil.objects.create(usuario=instance)
-
-# @receiver(post_save, sender=User)
-# def guardar_usuario_perfil(sender, instance, **kwargs):
-#    instance.perfil.save()

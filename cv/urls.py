@@ -12,3 +12,9 @@ urlpatterns = [
     url(r'^experiencia/(?P<pk>\d+)$', views.ExperienciaProfesionalViewDetalles.as_view(), name='detalle-experiencia'),
     url(r'^crea-experiencia/$', views.ExperienciaProfesionalCrearView.as_view(), name='crea-experiencia'),
 ]
+
+#Intentando probar reverse
+
+urlpatterns +=[
+    url()
+]

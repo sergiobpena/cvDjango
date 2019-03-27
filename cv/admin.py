@@ -2,9 +2,9 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Niveis , CompInfor , CompProg , FormOficial , Curso , Direccion , DatosPersoais , Sector , ExperienciaProfesional , OutroDato , Curriculum 
+from .models import CompInfor , CompProg , FormOficial , Curso , Direccion , DatosPersoais , Sector , ExperienciaProfesional , OutroDato , Curriculum
 
-admin.site.register(Niveis)
+
 #@admin.register(Niveis)
 #class NiveisAdmin(admin.ModelAdmin):
 #    pass
