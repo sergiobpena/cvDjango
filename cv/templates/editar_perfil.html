@@ -1,0 +1,8 @@
+{% extends "perfil.html" %}
+{% block formulario %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {% include 'form_bootstrap/form.html' %}
+        <button type="submit" class="btn btn-success">Aceptar</button>
+    </form>
+{% endblock formulario %}

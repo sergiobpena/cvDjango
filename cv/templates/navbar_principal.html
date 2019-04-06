@@ -1,0 +1,26 @@
+{% load static %}
+<!--
+    <a class="navbar-brand" href="{% url 'index' %}> Paxina Principal </a>
+    <ul class=" nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Page 1</a></li>
+        <li><a href="#">Page 2</a></li>
+    </ul> -->
+<nav class="navbar navbar-inverse">
+    <a href="{% url 'index' %}" class="navbar-brand">
+        Paxina Principal
+    </a>
+    <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'perfil' %}"> Perfil </a> </li>
+            <li><a href="{% url 'password_change' %}"><span class="glyphicon glyphicon-wrench"></span> Cambiar contrasinal</a>
+            </li>
+            <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
+        {% else %}
+            <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        {% endif %}
+    </ul>
+
+
+</nav>

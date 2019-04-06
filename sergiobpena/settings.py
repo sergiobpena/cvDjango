@@ -60,7 +60,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
             './templates',
-            
+            './cuentas/templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -111,6 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'Europe/Madrid'
 

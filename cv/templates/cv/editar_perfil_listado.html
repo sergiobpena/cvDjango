@@ -1,0 +1,27 @@
+
+{% block listado %}
+    <div>
+        <h3>Experiencia Profesional</h3>
+        <ul>
+            {% for exp in experienciaProfesional %}
+                <li>{{ exp.posto }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <h3>Formación oficial</h3>
+        <ul>
+            {% for fo in formOficial %}
+                <li>{{ fo.titulacion }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <h3>Cursos</h3>
+        <ul>
+            {% for exp in experienciaProfesional %}
+                <li>{{ exp.posto }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock listado %}

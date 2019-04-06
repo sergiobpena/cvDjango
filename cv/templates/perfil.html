@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block contido %}
+    <div>
+        <div class="list-group">
+            <h3 class="list-group-item-heading">Experiencia Profesional</h3>
+            {% for exp in experienciaProfesional %}
+                <a href="{% url 'edita-experiencia' exp.pk %}" class="list-group-item">{{ exp.posto }}</a>
+            {% endfor %}
+            <a href="{% url 'crea-experiencia' %}" class="list-group-item">Engade Experiencia Profesional</a>
+        </div>
+    </div>
+    <div>
+        <div class="list-group">
+            <h3 class="list-group-item-heading">Formación oficial</h3>
+            {% for fo in formOficial %}
+                <div class=" list-group-item ">
+                    <div class="">{{ fo }}
+                        <a href="{% url 'edita-formOficial' fo.pk %}"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a href="{% url 'borra-formOficial' fo.pk %}"><span class="glyphicon glyphicon-remove"></span>
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+        <a href="{% url 'crea-formOficial' %}" class="list-group-item">Engade Formación oficial</a>
+    </div>
+<!--    <section class="panel panel-default">
+        <h4 class="panel-title">Formacion oficial</h4>
+        {% for fo in formOficial %}
+            <article class="panel-body">
+                <div class="">{{ fo.titulacion }}</div>
+
+            </article>
+        {% endfor %}
+
+    </section>
+    </div>
+    -->
+    <div>
+        <div class="list-group">
+            <h3 class="list-group-item-heading">Cursos</h3>
+            {% for cur in curso %}
+                <a href="{% url 'edita-curso' cur.pk %}" class="list-group-item">{{ cur.nomeCurso }}</a>
+            {% endfor %}
+            <a href="{% url 'crea-cursos' %}" class="list-group-item">Engade Cursos</a>
+        </div>
+    </div>
+    {% block formulario %}
+    {% endblock formulario %}
+{% endblock contido %}

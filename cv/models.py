@@ -57,6 +57,8 @@ class FormOficial(models.Model):
     def __str__(self):
         return self.titulacion
 
+    def get_absolute_url(self):
+        return reverse('edita-formOficial',args=[str(self.id)])
 
 class Curso(models.Model):
     nomeCurso = models.CharField(max_length=80, verbose_name='Nome do curso', blank=True, null=True)
@@ -74,7 +76,8 @@ class Curso(models.Model):
 
     def __str__(self):
         return self.nomeCurso
-
+    def get_absolute_url(self):
+       return reverse ('edita-curso', args=[str(self.id)])
 
 class Direccion(models.Model):
     rua = models.CharField(max_length=80, verbose_name='Rúa')
@@ -135,8 +138,8 @@ class ExperienciaProfesional(models.Model):
         ordering = ["dataFin", "dataInicio"]
         verbose_name = 'Experiencia Profesional'
 
-    # def get_absolute_url(self):
-    #    return reverse ('experiencia_detalle', args=[str(self.id)])
+    def get_absolute_url(self):
+       return reverse ('edita-experiencia', args=[str(self.id)])
 
     # Devuelve el URL a una instancia particular de Book
     # El último método, get_absoulte_url() devuelve un URL que puede ser usado para acceder al detalle

@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render , redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login as auth_login
-from django.contrib.auth.views import PasswordResetView
+from django.contrib.auth.views import PasswordResetView , LoginView
 from .forms import SignUpForm , LoginFormulario , ReseteoContrasinalFormulario
 
 from django.urls import reverse_lazy
@@ -29,7 +29,7 @@ def signup(request):
     return render(request, 'sign_up.html', {'form': form})
 
 
-class LoginVista (FormView):
+class LoginVista (LoginView):
     form_class = LoginFormulario
     template_name ='login.html'
     success_url = reverse_lazy("index")

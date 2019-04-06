@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-# Create your tests here.
+# Create your test here.
 from django.urls import reverse
 from django.urls import resolve
 from django.test import TestCase
