@@ -34,3 +34,6 @@ urlpatterns +=[url(r'^perfil/borra-comp-inform/(?P<pk>\d+)$', views.BorraCompInf
 urlpatterns +=[url(r'^perfil/borra-comp-prog/(?P<pk>\d+)$', views.BorraCompProgView.as_view(), name='borra-comProg')]
 # urlpatterns+=[url(r'(?P<username>[\w.@+-]+)/form-oficial/(?P<pk>\d+)',views.EditaFormacionOficialView.as_view(),name='detalle-formOfi')]
 # urlpatterns+=[url(r'(?P<pk>\d+)',views.EditaFormacionOficialView.as_view(),name='detalle-formOfi')]
+
+
+urlpatterns +=[url(r'^crea-cv/$', views.PerfilView.as_view(), name='crea-cv')]

@@ -3,12 +3,11 @@ from django.contrib.auth.models import User
 from django.views.generic import  View, DeleteView , ListView
 from django.shortcuts import get_object_or_404, redirect, render
 
-from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import *
+from cv.forms import *
 from django.urls import reverse_lazy
 
-from .models import CompInfor, CompProg, FormOficial, Curso, Direccion, DatosPersoais, Sector, ExperienciaProfesional, \
+from cv.models import CompInfor, CompProg, FormOficial, Curso, Direccion, DatosPersoais, Sector, ExperienciaProfesional, \
     OutroDato, Curriculum
 
 
